@@ -261,6 +261,7 @@ public:
 
 private:
 	int create_icons();
+	int extract_extension(char *out, const char *in);
 	int create_tables();
 	int delete_tables();
 // Called by directory history menu to change directories but leave

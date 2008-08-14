@@ -647,9 +647,11 @@ BC_Resources::BC_Resources()
 	filebox_columntype[0] = FILEBOX_NAME;
 	filebox_columntype[1] = FILEBOX_SIZE;
 	filebox_columntype[2] = FILEBOX_DATE;
+	filebox_columntype[3] = FILEBOX_EXTENSION;
 	filebox_columnwidth[0] = 200;
 	filebox_columnwidth[1] = 100;
 	filebox_columnwidth[2] = 100;
+	filebox_columnwidth[3] = 100;
 	dirbox_columntype[0] = FILEBOX_NAME;
 	dirbox_columntype[1] = FILEBOX_DATE;
 	dirbox_columnwidth[0] = 200;

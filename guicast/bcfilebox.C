@@ -717,6 +717,23 @@ int BC_FileBox::handle_event()
 	return 0;
 }
 
+int BC_FileBox::extract_extension(char *out, const char *in)
+{
+	int i;
+ 
+	for(i = strlen(in)-1; i > 0 && in[i] != '.'; i--)
+	  {
+	    ;
+	  }
+	if(in[i] == '.') {
+	  i++;
+	  strcpy(out, &in[i]);
+	}
+	else
+	  out[0] = '\0';
+	return 0;
+}
+
 int BC_FileBox::create_tables()
 {
 	delete_tables();
@@ -789,6 +806,18 @@ int BC_FileBox::create_tables()
 		}
 
 		list_column[column_of_type(FILEBOX_DATE)].append(new_item);
+
+// Extension Entry
+			if(!is_dir)
+			{
+				extract_extension(string, file_item->name);
+				new_item = new BC_ListBoxItem(string, get_resources()->file_color);
+			}
+			else
+			{
+				new_item = new BC_ListBoxItem("", get_resources()->directory_color);
+			}
+			list_column[column_of_type(FILEBOX_EXTENSION)].append(new_item);
 	}
 	
 	return 0;
@@ -842,6 +871,9 @@ const char* BC_FileBox::columntype_to_text(int type)
 		case FILEBOX_DATE:
 			return FILEBOX_DATE_TEXT;
 			break;
+		case FILEBOX_EXTENSION:
+			return FILEBOX_EXTENSION_TEXT;
+			break; 
 	}
 	return "";
 }

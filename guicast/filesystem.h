@@ -122,10 +122,12 @@ public:
 	{
 		SORT_PATH,
 		SORT_SIZE,
-		SORT_DATE
+		SORT_DATE,
+		SORT_EXTENSION
 	};
 
 private:
+	int dot_reverse_filename(char *out, const char *in);
 	int compare_items(ArrayList<FileItem*> *dir_list, int item1, int item2);
 	int sort_table(ArrayList<FileItem*> *dir_list);
 
