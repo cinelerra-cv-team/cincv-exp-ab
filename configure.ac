@@ -343,7 +343,7 @@ AC_SUBST(CPU_CFLAGS)
 ############## FFMPEG
 
 FFMPEG_EXTERNALTEXT="External ffmpeg"
-PKG_CHECK_MODULES([FFMPEG], [libavcodec libpostproc libavformat])
+PKG_CHECK_MODULES([FFMPEG], [libavcodec libpostproc libavformat], [ffmpeg=yes])
 FFMPEG_CFLAGS="$FFMPEG_CFLAGS -I/usr/include/libavcodec -I/usr/include/libavformat"
 
 AC_SUBST(FFMPEG_CFLAGS)
@@ -545,6 +545,7 @@ RPT(libfaac,libfaac libraries)
 RPT(libfaach,libfaac headers)
 RPT(libfaad,libfaad libraries)
 RPT(libfaadh,libfaad headers)
+RPT(ffmpeg,ffmpeg)
 mandatory="$succeeded"
 
 echo
