@@ -1,0 +1,111 @@
+THEMES= \
+	suv \
+	defaulttheme
+	
+
+SUBDIRS= \
+	$(THEMES) \
+	colors \
+	parametric \
+	burn \
+	1080to540 \
+	720to480 \
+	aging \
+	bandslide \
+	bandwipe \
+	blur \
+	brightness \
+	cdripper \
+	chromakey \
+	chromakeyhsv \
+	colorbalance \
+	compressor \
+	crossfade \
+	decimate \
+	deinterlace \
+	delayaudio \
+	delayvideo \
+	denoise \
+	denoisefft \
+	denoisemjpeg \
+	denoiseseltempavg \
+	denoisevideo \
+	despike \
+	diffkey \
+	dissolve \
+	dot \
+	downsample \
+	fieldframe \
+	flash \
+	flip \
+	framefield \
+	freeverb \
+	freezeframe \
+	gain \
+	gamma \
+	gradient \
+	graphic \
+	histogram \
+	holo \
+	huesaturation \
+	interpolate \
+	interpolateaudio \
+	interpolatevideo \
+	invertaudio \
+	invertvideo \
+	irissquare \
+	ivtc \
+	lens \
+	level \
+	linearblur \
+	liveaudio \
+	livevideo \
+	loopaudio \
+	loopvideo \
+	motion \
+	motion2point \
+	motionblur \
+	normalize \
+	oilpainting \
+	overlay \
+	overlayaudio \
+	perspective \
+	pitch \
+	polar \
+	radialblur \
+	reframe \
+	reframert \
+	resample \
+	reverb \
+	reverseaudio \
+	reversevideo \
+	rgb601 \
+	rotate \
+	scale \
+	shapewipe \
+	sharpen \
+	shiftinterlace \
+	slide \
+	spectrogram \
+	svg \
+	swapchannels \
+	swapframes \
+	synthesizer \
+	threshold \
+	timeavg \
+	timefront \
+	timestretch \
+	titler \
+	translate \
+	unsharp \
+	videoscope \
+	wave \
+	whirl \
+	wipe \
+	yuv \
+	zoomblur \
+	fonts
+
+AUTOMAKE_OPTIONS=foreign
+
+EXTRA_DIST = 
