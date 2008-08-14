@@ -1,4 +1,0 @@
-ImfThreading.lo ImfThreading.o: ImfThreading.cpp \
-  /root/hvirtual/thirdparty//include/OpenEXR/IlmThreadPool.h
-
-/root/hvirtual/thirdparty//include/OpenEXR/IlmThreadPool.h:
