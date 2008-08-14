@@ -9,7 +9,7 @@ AM_CFLAGS = \
 	$(XIPH_CFLAGS) \
 	$(MJPEG_CFLAGS) \
 	$(LIBDV_CFLAGS) \
-	-DENCORE_INCLUDE=\"encore50/encore.h\" \
+	-DENCORE_INCLUDE=\"thirdparty/encore50/encore.h\" \
 	@FFMPEG_CFLAGS@
 
 libquicktimehv_la_LDFLAGS = -version-info 1:0:0 -release 1.6.0 -Wl,--no-undefined 
