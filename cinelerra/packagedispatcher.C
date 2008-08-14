@@ -239,6 +239,7 @@ int PackageDispatcher::create_packages(MWindow *mwindow,
 			paths.append(packages[i]->path);
 		}
 		result = ConfirmSave::test_files(mwindow, &paths);
+		paths.remove_all_objects();
 	}
 	
 	return result;
