@@ -61,7 +61,7 @@ Preferences::Preferences()
 
 
 
-	get_exe_path(plugin_dir);
+       strcpy(plugin_dir, PLUGIN_DIR);
 
 	sprintf(index_directory, BCASTDIR);
 	if(strlen(index_directory))
