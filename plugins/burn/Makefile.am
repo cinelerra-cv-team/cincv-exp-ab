@@ -1,6 +1,6 @@
 plugin_LTLIBRARIES = burn.la
 burn_la_LDFLAGS = -avoid-version -module -shared 
-burn_la_LIBADD = $(top_builddir)/plugins/burn/libeffecttv.la
+burn_la_LIBADD = libeffecttv.la
 burn_la_SOURCES = burn.C burnwindow.C
 
 noinst_LTLIBRARIES = libeffecttv.la

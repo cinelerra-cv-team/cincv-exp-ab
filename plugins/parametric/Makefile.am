@@ -1,6 +1,6 @@
 plugin_LTLIBRARIES = parametric.la
 parametric_la_LDFLAGS = -avoid-version -module -shared 
-parametric_la_LIBADD = $(top_builddir)/plugins/parametric/libfourier.la
+parametric_la_LIBADD = libfourier.la
 parametric_la_SOURCES = parametric.C
 
 
