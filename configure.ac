@@ -1,4 +1,4 @@
-AC_INIT(Cinelerra, 2.1)
+AC_INIT(Cinelerra, 4)
 
 AC_CANONICAL_SYSTEM
 
