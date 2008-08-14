@@ -22,6 +22,10 @@
 #ifndef BCSYNCHRONOUS_H
 #define BCSYNCHRONOUS_H
 
+#if defined(HAVE_CONFIG_H)
+#include "config.h"
+#endif
+
 #include "arraylist.h"
 #include "bcpbuffer.inc"
 #include "bcpixmap.inc"

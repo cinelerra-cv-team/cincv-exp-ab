@@ -114,6 +114,11 @@ public:
 // separators.  The alnums are replaced by user text.
 	void set_separators(const char *separators);
 
+// 1 - selects text, -1 - deselects, 0 - do nothing
+// in all cases it returns text_selected after the operation
+	int select_whole_text(int select);
+	void cycle_textboxes(int amout);
+	
 private:
 	int reset_parameters(int rows, int has_border, int font);
 	void draw();

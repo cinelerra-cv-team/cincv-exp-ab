@@ -197,6 +197,7 @@ cinelerra_SOURCES = aattachmentpoint.C \
 		    mainprogress.C \
 		    mainsession.C \
 		    mainundo.C \
+		    manualgoto.C \
 		    maskauto.C \
 		    maskautos.C \
 		    maskengine.C \
@@ -509,6 +510,7 @@ noinst_HEADERS = aattachmentpoint.h \
 		 mainprogress.h \
 		 mainsession.h \
 		 mainundo.h \
+		 manualgoto.h \
 		 maskauto.h \
 		 maskautos.h \
 		 maskengine.h \

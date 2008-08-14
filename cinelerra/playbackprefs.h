@@ -277,5 +277,17 @@ public:
 	PlaybackPrefs *playback;
 };
 
+class TimecodeOffset : public BC_TextBox
+{
+public:
+   TimecodeOffset(int x, int y, PreferencesWindow *pwindow,
+            PlaybackPrefs *playback, char *text, int unit);
+   int handle_event();
+	int unit;
+   PlaybackPrefs *playback;
+   PreferencesWindow *pwindow;
+};
+
+
 
 #endif

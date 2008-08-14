@@ -65,6 +65,9 @@ public:
 	void equivalent_output(EDLSession *session, double *result);
 	void dump();
 
+// calculates the frame offset for programme timecode
+	int64_t get_frame_offset();
+
 // Audio
 	int achannel_positions[MAXCHANNELS];
 	AudioOutConfig *aconfig_duplex;
@@ -179,6 +182,8 @@ public:
 	int test_playback_edits;
 // Format to display times in
 	int time_format;
+// Offset for timecode
+	int timecode_offset[4];
 // Format to display nudge in, either seconds or track units.
 	int nudge_seconds;
 // Show tool window in CWindow
