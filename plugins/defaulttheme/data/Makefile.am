@@ -1,6 +1,6 @@
 noinst_LIBRARIES = libimagedata.a
 libimagedata_a_SOURCES =
-nodist_libimagedata_a_SOURCES = defaulttheme.data
+nodist_libimagedata_a_SOURCES = defaulttheme_data.data
 
 # The following bash scripts makes up the list of used PNG's
 
@@ -506,13 +506,13 @@ zoombar_right.png
 
 # this rule creates the .o file from the concatenated PNGs
 .data.$(OBJEXT):
-	$(OBJCOPY) -I binary -B $(OBJCOPYARCH) -O $(OBJCOPYTARGET) $< $@
+	cp $< $@
 
-defaulttheme.data: $(PNGS)
+defaulttheme_data.data: $(PNGS)
 	$(top_builddir)/guicast/bootstrap $@ $^ || { rm -f $@; exit 1; }
 
 clean-local:
-	rm -f defaulttheme.data
+	rm -f defaulttheme_data.data
  
 EXTRA_DIST = \
 	$(PNGS) \

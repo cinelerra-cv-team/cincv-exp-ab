@@ -192,8 +192,7 @@ AM_CXXFLAGS = $(LARGEFILE_CFLAGS) $(X_CFLAGS)
 LIBTOOL = $(SHELL) $(top_builddir)/libtool $(LTCXX_FLAGS)
 
 # special CFLAGS that can be set on the make command line
-# TODO: FIXME
-BOOTSTRAP_CFLAGS= -DBOOTSTRAP="\"objcopy -B i386 -I binary -O elf64-x86-64\""
+BOOTSTRAP_CFLAGS=-DBOOTSTRAP="\"$(OBJCOPY) -I binary -B $(OBJCOPYARCH) -O $(OBJCOPYTARGET)\""
 bootstrap_SOURCES=bootstrap.c
 bootstrap_LDADD =
 

@@ -1,6 +1,6 @@
 noinst_LIBRARIES = libimagedata.a
 libimagedata_a_SOURCES =
-nodist_libimagedata_a_SOURCES = suv.data
+nodist_libimagedata_a_SOURCES = suv_data.data
 
 PNGS = \
 about_bg.png \
@@ -597,13 +597,13 @@ zoomtumble_up.png
 
 # this rule creates the .o file from the concatenated PNGs
 .data.$(OBJEXT):
-	$(OBJCOPY) -I binary -B $(OBJCOPYARCH) -O $(OBJCOPYTARGET) $< $@
+	cp $< $@
 
-suv.data: $(PNGS)
+suv_data.data: $(PNGS)
 	$(top_builddir)/guicast/bootstrap $@ $^ || { rm -f $@; exit 1; }
 
 clean-local:
-	rm -f suv.data
+	rm -f suv_data.data
  
 EXTRA_DIST = \
 	$(PNGS) \
