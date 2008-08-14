@@ -22,6 +22,10 @@
 #ifndef BCWINDOWBASE_H
 #define BCWINDOWBASE_H
 
+#if defined(HAVE_CONFIG_H)
+#include "config.h"
+#endif
+
 
 //#define HAVE_LIBXXF86VM
 // Use single thread for all windows.
