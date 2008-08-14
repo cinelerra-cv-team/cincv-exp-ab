@@ -11,8 +11,6 @@
 // This generates our own header using fixed parameters
 //#define MANUAL_HEADER
 
-// For the working version
-#define GOOD_VERSION
 
 typedef struct
 {
@@ -139,14 +137,14 @@ static int encode(quicktime_t *file, unsigned char **row_pointers, int track)
 		codec->param.i_fps_num = quicktime_frame_rate_n(file, track);
 		codec->param.i_fps_den = quicktime_frame_rate_d(file, track);
 
-#ifndef GOOD_VERSION
+#if X264_BUILD >= 48
 		codec->param.rc.i_rc_method = X264_RC_CQP;
 #endif
 
 // Reset quantizer if fixed bitrate
 		x264_param_t default_params;
 		x264_param_default(&default_params);
-#ifdef GOOD_VERSION
+#if X264_BUILD < 48
 		if(codec->param.rc.b_cbr)
 #else
 		if(codec->param.rc.i_qp_constant)
@@ -503,7 +501,7 @@ static int set_parameter(quicktime_t *file,
 		}
 		else
 		if(!strcasecmp(key, "h264_fix_bitrate"))
-#ifdef GOOD_VERSION
+#if X264_BUILD < 48
 			codec->param.rc.b_cbr = (*(int*)value) / 1000;
 #else
 			codec->param.rc.i_qp_constant = (*(int*)value) / 1000;
