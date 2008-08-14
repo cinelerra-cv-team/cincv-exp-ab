@@ -353,6 +353,7 @@ AM_CXXFLAGS = \
 	$(OPENEXR_CFLAGS) \
 	$(LIBDV_CFLAGS) \
 	$(FFMPEG_CFLAGS) \
+	$(FLAC_CFLAGS) \
 	-DPLUGIN_DIR=\"$(plugindir)\"
 
 AM_LDFLAGS = -export-dynamic
@@ -684,6 +685,7 @@ cinelerra_LDADD = \
 	$(LIBDV_LIBS) \
 	-luuid \
 	$(MJPEG_LIBS) \
-	$(FFMPEG_LIBS)
+	$(FFMPEG_LIBS) \
+	$(FLAC_LIBS)
 
 EXTRA_DIST = gen-feather-h

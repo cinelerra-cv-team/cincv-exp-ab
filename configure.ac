@@ -351,6 +351,14 @@ AC_SUBST(FFMPEG_LIBS)
 AC_SUBST(FFMPEG_EXTERNALTEXT)
 ############# END FFMPEG
 
+############## FLAC
+
+PKG_CHECK_MODULES([FLAC], [flac], [libflac=yes])
+AC_SUBST(FLAC_CFLAGS)
+AC_SUBST(FLAC_LIBS)
+
+############## END FLAC
+
 ############## XIPH
 PKG_CHECK_MODULES(libogg,ogg >= 1.1,[libogg=yes],:)
 PKG_CHECK_MODULES(libvorbis,vorbis,[libvorbis=yes],:)
@@ -546,6 +554,7 @@ RPT(libfaach,libfaac headers)
 RPT(libfaad,libfaad libraries)
 RPT(libfaadh,libfaad headers)
 RPT(ffmpeg,ffmpeg)
+RPT(libflac,libflac)
 mandatory="$succeeded"
 
 echo
