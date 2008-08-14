@@ -117,6 +117,14 @@ public:
 	BC_FileBox *filebox;
 };
 
+class BC_FileBoxDirectoryText : public BC_TextBox
+{
+public:
+	BC_FileBoxDirectoryText(int x, int y, BC_FileBox *filebox);
+	int handle_event();
+	BC_FileBox *filebox;
+};
+
 class BC_FileBoxFilterText : public BC_TextBox
 {
 public:
@@ -249,6 +257,7 @@ public:
 	void delete_files();
 	BC_Button* get_ok_button();
 	BC_Button* get_cancel_button();
+	FileSystem *fs;
 
 private:
 	int create_icons();
@@ -271,13 +280,12 @@ private:
 	int column_of_type(int type);
 
 	BC_Pixmap *icons[TOTAL_ICONS];
-	FileSystem *fs;
 	BC_FileBoxRecent *recent_popup;
 	BC_FileBoxTextBox *textbox;
 	BC_FileBoxListBox *listbox;
 	BC_FileBoxFilterText *filter_text;
 	BC_FileBoxFilterMenu *filter_popup;
-	BC_Title *directory_title;
+	BC_TextBox *directory_title;
 	BC_Button *icon_button, *text_button, *folder_button, *updir_button, *delete_button, *reload_button;
 	BC_Button *ok_button, *cancel_button;
 	BC_FileBoxUseThis *usethis_button;
