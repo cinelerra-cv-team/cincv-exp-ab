@@ -96,6 +96,7 @@ public:
 	int rotate_90(int side);
 	int get_w();
 	int get_h();
+	void transparency_bitswap();
 // Data pointers for current ring buffer
 	unsigned char* get_data();
 	unsigned char* get_y_plane();
@@ -129,6 +130,7 @@ private:
 	int allocate_data();
 	int delete_data();
 	int get_default_depth();
+	char byte_bitswap(char src);
 
 	int ring_buffers, current_ringbuffer;
 	int w, h;
