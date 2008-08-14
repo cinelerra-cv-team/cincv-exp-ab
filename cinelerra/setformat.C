@@ -326,6 +326,7 @@ SetFormatWindow::SetFormatWindow(MWindow *mwindow,
 void SetFormatWindow::create_objects()
 {
 	int x = 10, y = mwindow->theme->setformat_y1;
+        BC_TextBox *textbox;
 	BC_Title *title;
 
 	mwindow->theme->draw_setformat_bg(this);
@@ -509,6 +510,26 @@ void SetFormatWindow::create_objects()
 	x += 30;
 	add_subwindow(auto_aspect = new ScaleAspectAuto(x, y, thread));
 
+	y += mwindow->theme->setformat_margin;
+ 
+	// --------------------
+	add_subwindow(new BC_Title(mwindow->theme->setformat_x3, 
+		y, 
+		_("Interlace mode:")));
+	add_subwindow(textbox = new BC_TextBox(mwindow->theme->setformat_x4,
+		y,
+		140, 
+		1, 
+		""));
+	add_subwindow(new InterlacemodePulldown(mwindow, 
+		textbox,
+		&(thread->new_settings->session->interlace_mode),
+		(ArrayList<BC_ListBoxItem*>*)&mwindow->interlace_project_modes,
+		mwindow->theme->setformat_x4 + textbox->get_w(), 
+		y)); 
+	y += mwindow->theme->setformat_margin;
+ 
+ 
 
 
 	BC_OKTextButton *ok;

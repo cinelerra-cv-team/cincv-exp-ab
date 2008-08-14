@@ -24,6 +24,8 @@
 
 
 class Asset;
+class InterlaceautofixoptionItem;
+class InterlacefixmethodItem;
 
 
 

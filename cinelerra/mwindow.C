@@ -51,6 +51,7 @@
 #include "gwindowgui.h"
 #include "keyframegui.h"
 #include "indexfile.h"
+#include "interlacemodes.h"
 #include "language.h"
 #include "levelwindowgui.h"
 #include "levelwindow.h"
@@ -688,6 +689,8 @@ void MWindow::init_channeldb()
 void MWindow::init_menus()
 {
 	char string[BCTEXTLEN];
+
+	// Color Models
 	cmodel_to_text(string, BC_RGB888);
 	colormodels.append(new ColormodelItem(string, BC_RGB888));
 	cmodel_to_text(string, BC_RGBA8888);
@@ -708,6 +711,32 @@ void MWindow::init_menus()
 //	colormodels.append(new ColormodelItem(string, BC_YUV161616));
 //	cmodel_to_text(string, BC_YUVA16161616);
 //	colormodels.append(new ColormodelItem(string, BC_YUVA16161616));
+
+#define ILACEPROJECTMODELISTADD(x) ilacemode_to_text(string, x); \
+                           interlace_project_modes.append(new InterlacemodeItem(string, x));
+
+#define ILACEASSETMODELISTADD(x) ilacemode_to_text(string, x); \
+                           interlace_asset_modes.append(new InterlacemodeItem(string, x));
+
+#define ILACEFIXMETHODLISTADD(x) ilacefixmethod_to_text(string, x); \
+                           interlace_asset_fixmethods.append(new InterlacefixmethodItem(string, x));
+
+	// Interlacing Modes
+	ILACEASSETMODELISTADD(BC_ILACE_MODE_UNDETECTED); // Not included in the list for the project options.
+
+	ILACEASSETMODELISTADD(BC_ILACE_MODE_TOP_FIRST);
+	ILACEPROJECTMODELISTADD(BC_ILACE_MODE_TOP_FIRST);
+
+	ILACEASSETMODELISTADD(BC_ILACE_MODE_BOTTOM_FIRST);
+	ILACEPROJECTMODELISTADD(BC_ILACE_MODE_BOTTOM_FIRST);
+
+	ILACEASSETMODELISTADD(BC_ILACE_MODE_NOTINTERLACED);
+	ILACEPROJECTMODELISTADD(BC_ILACE_MODE_NOTINTERLACED);
+
+	// Interlacing Fixing Methods
+	ILACEFIXMETHODLISTADD(BC_ILACE_FIXMETHOD_NONE);
+	ILACEFIXMETHODLISTADD(BC_ILACE_FIXMETHOD_UPONE);
+	ILACEFIXMETHODLISTADD(BC_ILACE_FIXMETHOD_DOWNONE);
 }
 
 void MWindow::init_indexes()

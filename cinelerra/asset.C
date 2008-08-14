@@ -29,6 +29,7 @@
 #include "filesystem.h"
 #include "filexml.h"
 #include "quicktime.h"
+#include "interlacemodes.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -95,7 +96,10 @@ int Asset::init_values()
 	strcpy(acodec, QUICKTIME_TWOS);
 	jpeg_quality = 100;
 	aspect_ratio = -1;
-	
+	interlace_autofixoption = BC_ILACE_AUTOFIXOPTION_AUTO;
+	interlace_mode = BC_ILACE_MODE_UNDETECTED;
+	interlace_fixmethod = BC_ILACE_FIXMETHOD_NONE;
+
 	ampeg_bitrate = 256;
 	ampeg_derivative = 3;
 
@@ -216,6 +220,9 @@ void Asset::copy_format(Asset *asset, int do_index)
 	mp4a_quantqual = asset->mp4a_quantqual;
 	use_header = asset->use_header;
 	aspect_ratio = asset->aspect_ratio;
+	interlace_autofixoption = asset->interlace_autofixoption;
+	interlace_mode = asset->interlace_mode;
+	interlace_fixmethod = asset->interlace_fixmethod;
 
 	video_data = asset->video_data;
 	layers = asset->layers;
@@ -380,6 +387,9 @@ int Asset::equivalent(Asset &asset,
 	{
 		result = (layers == asset.layers && 
 			frame_rate == asset.frame_rate &&
+			asset.interlace_autofixoption == interlace_autofixoption &&
+			asset.interlace_mode    == interlace_mode &&
+			interlace_fixmethod     == asset.interlace_fixmethod &&
 			width == asset.width &&
 			height == asset.height &&
 			!strcmp(vcodec, asset.vcodec));
@@ -536,6 +546,8 @@ int Asset::read_audio(FileXML *file)
 
 int Asset::read_video(FileXML *file)
 {
+        char string[BCTEXTLEN];
+
 	if(file->tag.title_is("VIDEO")) video_data = 1;
 	height = file->tag.get_property("HEIGHT", height);
 	width = file->tag.get_property("WIDTH", width);
@@ -547,6 +559,15 @@ int Asset::read_video(FileXML *file)
 	file->tag.get_property("VCODEC", vcodec);
 
 	video_length = file->tag.get_property("VIDEO_LENGTH", 0);
+
+        interlace_autofixoption = file->tag.get_property("INTERLACE_AUTOFIX",0);
+
+        ilacemode_to_xmltext(string, BC_ILACE_MODE_NOTINTERLACED);
+
+        interlace_mode = ilacemode_from_xmltext(file->tag.get_property("INTERLACE_MODE",string), BC_ILACE_MODE_NOTINTERLACED);
+
+        ilacefixmethod_to_xmltext(string, BC_ILACE_FIXMETHOD_NONE);
+        interlace_fixmethod = ilacefixmethod_from_xmltext(file->tag.get_property("INTERLACE_FIXMETHOD",string), BC_ILACE_FIXMETHOD_NONE);
 
 	return 0;
 }
@@ -753,6 +774,8 @@ int Asset::write_audio(FileXML *file)
 
 int Asset::write_video(FileXML *file)
 {
+        char string[BCTEXTLEN];
+
 	if(video_data)
 		file->tag.set_title("VIDEO");
 	else
@@ -766,7 +789,13 @@ int Asset::write_video(FileXML *file)
 
 	file->tag.set_property("VIDEO_LENGTH", video_length);
 
+        file->tag.set_property("INTERLACE_AUTOFIX", interlace_autofixoption);
 
+        ilacemode_to_xmltext(string, interlace_mode);
+        file->tag.set_property("INTERLACE_MODE", string);
+
+        ilacefixmethod_to_xmltext(string, interlace_fixmethod);
+        file->tag.set_property("INTERLACE_FIXMETHOD", string);
 
 
 	file->append_tag();
@@ -886,6 +915,10 @@ void Asset::load_defaults(BC_Hash *defaults,
 	jpeg_quality = GET_DEFAULT("JPEG_QUALITY", jpeg_quality);
 	aspect_ratio = GET_DEFAULT("ASPECT_RATIO", aspect_ratio);
 
+	interlace_autofixoption	= BC_ILACE_AUTOFIXOPTION_AUTO;
+	interlace_mode         	= BC_ILACE_MODE_UNDETECTED;
+	interlace_fixmethod    	= BC_ILACE_FIXMETHOD_UPONE;
+
 // MPEG format information
 	vmpeg_iframe_distance = GET_DEFAULT("VMPEG_IFRAME_DISTANCE", vmpeg_iframe_distance);
 	vmpeg_pframe_distance = GET_DEFAULT("VMPEG_PFRAME_DISTANCE", vmpeg_pframe_distance);
@@ -990,6 +1023,10 @@ void Asset::save_defaults(BC_Hash *defaults,
 		UPDATE_DEFAULT("JPEG_QUALITY", jpeg_quality);
 		UPDATE_DEFAULT("ASPECT_RATIO", aspect_ratio);
 
+	        UPDATE_DEFAULT("INTERLACE_AUTOFIXOPTION", interlace_autofixoption);
+        	UPDATE_DEFAULT("INTERLACE_MODE", interlace_mode);
+        	UPDATE_DEFAULT("INTERLACE_FIXMETHOD", interlace_fixmethod);
+ 
 // MPEG format information
 		UPDATE_DEFAULT("VMPEG_IFRAME_DISTANCE", vmpeg_iframe_distance);
 		UPDATE_DEFAULT("VMPEG_PFRAME_DISTANCE", vmpeg_pframe_distance);

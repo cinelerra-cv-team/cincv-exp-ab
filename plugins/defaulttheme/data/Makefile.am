@@ -269,6 +269,7 @@ labeltoggle_uphi.png \
 labeltoggle_up.png \
 label_up.png \
 left_justify.png \
+listbox_button_disabled.png \
 listbox_button_dn.png \
 listbox_button_hi.png \
 listbox_button.png \

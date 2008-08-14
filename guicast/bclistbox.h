@@ -120,6 +120,9 @@ public:
 
 	int initialize();
 
+	int enable();
+	int disable();
+
 // User event handler for new selections
 	virtual int selection_changed() { return 0; };
 // User event handler for triggering a selection
@@ -519,7 +522,7 @@ private:
 
 
 // Popup button
-	BC_Pixmap *button_images[3];
+	BC_Pixmap *button_images[4];
 // Expander
 	BC_Pixmap *toggle_images[5];
 // Background for drawing on
@@ -574,6 +577,9 @@ private:
 
 // More state variables
 	int button_highlighted;
+
+	int disabled;
+
 	int list_highlighted;
 // item cursor is over.  May not exist in tables.
 // Must be an index since this is needed to change the database.

@@ -50,7 +50,15 @@ libquicktimehv_la_SOURCES = \
 	frma.c \
 	graphics.c \
 	hdlr.c \
-													ima4.c jpeg.c libdv.c libmjpeg.c matrix.c mdat.c mdhd.c mdia.c \
+	ima4.c \
+	interlacemodes.c \
+	jpeg.c \
+	libdv.c \
+	libmjpeg.c \
+	matrix.c \
+	mdat.c \
+	mdhd.c \
+	mdia.c \
 	minf.c \
 	moov.c \
 	mp4a.c \
@@ -84,6 +92,7 @@ noinst_HEADERS = cmodel_permutation.h \
 	funcprotos.h \
 	graphics.h \
 	ima4.h \
+	interlacemodes.h \
 	jpeg.h \
 	jpeg_old.h \
 	libdv.h \
