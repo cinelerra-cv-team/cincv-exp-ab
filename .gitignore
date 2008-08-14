@@ -21,3 +21,4 @@ config.h.in
 .deps
 .libs
 cinelerra-cvs-current.spec
+cinelerra-4*
