@@ -1,5 +1,5 @@
 versioninfo.h
 cinelerra
-data/theme
-data/theme.data
+data/theme_data
+data/theme_data.data
 data/libimagedata.a
