@@ -1,5 +1,6 @@
 plugin_LTLIBRARIES = pitch.la
 pitch_la_LDFLAGS = -avoid-version -module -shared 
+pitch_la_LIBADD = -lfftw3
 pitch_la_SOURCES = pitch.C fourier.C
 AM_CXXFLAGS = $(LARGEFILE_CFLAGS)
 
