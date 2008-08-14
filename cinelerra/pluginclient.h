@@ -68,8 +68,52 @@ PluginClient* new_plugin(PluginServer *server) \
 }
 
 
+#define WINDOW_CLOSE_EVENT(window_class) \
+int window_class::close_event() \
+{ \
+/* Set result to 1 to indicate a client side close */ \
+	set_done(1); \
+	return 1; \
+}
 
 
+#define PLUGIN_THREAD_HEADER(plugin_class, thread_class, window_class) \
+class thread_class : public Thread \
+{ \
+public: \
+	thread_class(plugin_class *plugin); \
+	~thread_class(); \
+	void run(); \
+	window_class *window; \
+	plugin_class *plugin; \
+};
+
+#define PLUGIN_THREAD_OBJECT(plugin_class, thread_class, window_class) \
+thread_class::thread_class(plugin_class *plugin) \
+ : Thread(0, 0, 1) \
+{ \
+	this->plugin = plugin; \
+} \
+ \
+thread_class::~thread_class() \
+{ \
+	delete window; \
+} \
+ \
+void thread_class::run() \
+{ \
+	BC_DisplayInfo info; \
+	window = new window_class(plugin,  \
+		info.get_abs_cursor_x() - 75,  \
+		info.get_abs_cursor_y() - 65); \
+	window->create_objects(); \
+ \
+/* Only set it here so tracking doesn't update it until everything is created. */ \
+ 	plugin->thread = this; \
+	int result = window->run_window(); \
+/* This is needed when the GUI is closed from itself */ \
+	if(result) plugin->client_side_close(); \
+}
 
 
 
@@ -83,6 +127,26 @@ PluginClient* new_plugin(PluginServer *server) \
 	config_name config;
 
 
+#define PLUGIN_CONSTRUCTOR_MACRO \
+	thread = 0; \
+	defaults = 0; \
+	load_defaults(); \
+
+#define PLUGIN_DESTRUCTOR_MACRO \
+	if(thread) \
+	{ \
+/* This is needed when the GUI is closed from elsewhere than itself */ \
+/* Since we now use autodelete, this is all that has to be done, thread will take care of itself ... */ \
+/* Thread join will wait if this was not called from the thread itself or go on if it was */ \
+		thread->window->lock_window("PLUGIN_DESTRUCTOR_MACRO"); \
+		thread->window->set_done(0); \
+		thread->window->unlock_window(); \
+		thread->join(); \
+	} \
+ \
+ \
+	if(defaults) save_defaults(); \
+	if(defaults) delete defaults;
 
 
 
@@ -92,6 +156,38 @@ PluginClientWindow* plugin_class::new_window() \
 	return new window_class(this); \
 }
 
+#define SHOW_GUI_MACRO(plugin_class, thread_class) \
+int plugin_class::show_gui() \
+{ \
+	load_configuration(); \
+	thread_class *new_thread = new thread_class(this); \
+	new_thread->start(); \
+	return 0; \
+}
+
+#define SET_STRING_MACRO(plugin_class) \
+int plugin_class::set_string() \
+{ \
+	if(thread) \
+	{ \
+		thread->window->lock_window(); \
+		thread->window->set_title(gui_string); \
+		thread->window->unlock_window(); \
+	} \
+	return 0; \
+}
+
+#define RAISE_WINDOW_MACRO(plugin_class) \
+void plugin_class::raise_window() \
+{ \
+	if(thread) \
+	{ \
+		thread->window->lock_window(); \
+		thread->window->raise_window(); \
+		thread->window->flush(); \
+		thread->window->unlock_window(); \
+	} \
+}
 
 #define NEW_PICON_MACRO(plugin_class) \
 VFrame* plugin_class::new_picon() \

@@ -62,7 +62,7 @@ SvgWin::~SvgWin()
 {
 }
 
-int SvgWin::create_objects()
+void SvgWin::create_objects()
 {
 	int x = 10, y = 10;
 
@@ -126,7 +126,7 @@ int SvgWin::create_objects()
 
 	show_window();
 	flush();
-	return 0;
+	return;
 }
 
 int SvgWin::close_event()
@@ -197,8 +197,8 @@ void NewSvgButton::run()
 		new_window->create_objects();
 		new_window->update_filter("*.svg");
 		result = new_window->run_window();
-		client->defaults->update("DIRECTORY", new_window->get_path());
-		strcpy(filename, new_window->get_path());
+		client->defaults->update("DIRECTORY", new_window->get_path(0));
+		strcpy(filename, new_window->get_path(0));
 		delete new_window;
 
 // Extend the filename with .svg

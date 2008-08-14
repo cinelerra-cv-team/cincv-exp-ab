@@ -319,18 +319,18 @@ void DefaultTheme::initialize()
 	VFrame *editpanel_checked = new_image("editpanel_checked.png");
 	VFrame *editpanel_checkedhi = new_image("editpanel_checkedhi.png");
 
-	bottom_justify = new_button("bottom_justify.png", editpanel_up, editpanel_hi, editpanel_dn);
-	center_justify = new_button("center_justify.png", editpanel_up, editpanel_hi, editpanel_dn);
-	channel_data = new_button("channel.png", editpanel_up, editpanel_hi, editpanel_dn);
+	new_button("bottom_justify.png", editpanel_up, editpanel_hi, editpanel_dn);
+	new_button("center_justify.png", editpanel_up, editpanel_hi, editpanel_dn);
+	new_button("channel.png", editpanel_up, editpanel_hi, editpanel_dn);
 	new_button("copy.png", editpanel_up, editpanel_hi, editpanel_dn, "copy");
 	new_button("cut.png", editpanel_up, editpanel_hi, editpanel_dn, "cut");
 	new_button("fit.png", editpanel_up, editpanel_hi, editpanel_dn, "fit");
 	new_button("fitautos.png", editpanel_up, editpanel_hi, editpanel_dn, "fitautos");
 	new_button("inpoint.png", editpanel_up, editpanel_hi, editpanel_dn, "inbutton");
 	new_button("label.png", editpanel_up, editpanel_hi, editpanel_dn, "labelbutton");
-	left_justify = new_button("left_justify.png", editpanel_up, editpanel_hi, editpanel_dn);
-	magnify_button_data = new_button("magnify.png", editpanel_up, editpanel_hi, editpanel_dn);
-	middle_justify = new_button("middle_justify.png", editpanel_up, editpanel_hi, editpanel_dn);
+	new_button("left_justify.png", editpanel_up, editpanel_hi, editpanel_dn);
+	new_button("magnify.png", editpanel_up, editpanel_hi, editpanel_dn);
+	new_button("middle_justify.png", editpanel_up, editpanel_hi, editpanel_dn);
 	new_button("nextlabel.png", editpanel_up, editpanel_hi, editpanel_dn, "nextlabel");
 	new_button("outpoint.png", editpanel_up, editpanel_hi, editpanel_dn, "outbutton");
 	over_button = new_button("over.png", editpanel_up, editpanel_hi, editpanel_dn);
@@ -338,12 +338,12 @@ void DefaultTheme::initialize()
 	new_button("paste.png", editpanel_up, editpanel_hi, editpanel_dn, "paste");
 	new_button("prevlabel.png", editpanel_up, editpanel_hi, editpanel_dn, "prevlabel");
 	new_button("redo.png", editpanel_up, editpanel_hi, editpanel_dn, "redo");
-	right_justify = new_button("right_justify.png", editpanel_up, editpanel_hi, editpanel_dn);
+	new_button("right_justify.png", editpanel_up, editpanel_hi, editpanel_dn);
 	splice_data = new_button("splice.png", editpanel_up, editpanel_hi, editpanel_dn);
 	new_button("toclip.png", editpanel_up, editpanel_hi, editpanel_dn, "toclip");
-	top_justify = new_button("top_justify.png", editpanel_up, editpanel_hi, editpanel_dn);
+	new_button("top_justify.png", editpanel_up, editpanel_hi, editpanel_dn);
 	new_button("undo.png", editpanel_up, editpanel_hi, editpanel_dn, "undo");
-	wrench_data = new_button("wrench.png", editpanel_up, editpanel_hi, editpanel_dn);
+	new_button("wrench.png", editpanel_up, editpanel_hi, editpanel_dn);
 
 // CWindow icons
 	new_image("cwindow_inactive", "cwindow_inactive.png");
@@ -368,16 +368,16 @@ void DefaultTheme::initialize()
 
 	new_toggle("arrow.png", editpanel_up, editpanel_hi, editpanel_checked, editpanel_dn, editpanel_checkedhi, "arrow");
 	new_toggle("autokeyframe.png", editpanel_up, editpanel_hi, editpanel_checked, editpanel_dn, editpanel_checkedhi, "autokeyframe");
-	camera_data = new_toggle("camera.png", editpanel_up, editpanel_hi, editpanel_checked, editpanel_dn, editpanel_checkedhi);
-	crop_data = new_toggle("crop.png", editpanel_up, editpanel_hi, editpanel_checked, editpanel_dn, editpanel_checkedhi);
+	new_toggle("camera.png", editpanel_up, editpanel_hi, editpanel_checked, editpanel_dn, editpanel_checkedhi);
+	new_toggle("crop.png", editpanel_up, editpanel_hi, editpanel_checked, editpanel_dn, editpanel_checkedhi);
 	new_toggle("ibeam.png", editpanel_up, editpanel_hi, editpanel_checked, editpanel_dn, editpanel_checkedhi, "ibeam");
-	magnify_data = new_toggle("magnify.png", editpanel_up, editpanel_hi, editpanel_checked, editpanel_dn, editpanel_checkedhi);
-	mask_data = new_toggle("mask.png", editpanel_up, editpanel_hi, editpanel_checked, editpanel_dn, editpanel_checkedhi);
-	proj_data = new_toggle("projector.png", editpanel_up, editpanel_hi, editpanel_checked, editpanel_dn, editpanel_checkedhi);
-	protect_data = new_toggle("protect.png", editpanel_up, editpanel_hi, editpanel_checked, editpanel_dn, editpanel_checkedhi);
-	show_meters = new_toggle("show_meters.png", editpanel_up, editpanel_hi, editpanel_checked, editpanel_dn, editpanel_checkedhi);
-	titlesafe_data = new_toggle("titlesafe.png", editpanel_up, editpanel_hi, editpanel_checked, editpanel_dn, editpanel_checkedhi);
-	tool_data = new_toggle("toolwindow.png", editpanel_up, editpanel_hi, editpanel_checked, editpanel_dn, editpanel_checkedhi);
+	new_toggle("magnify.png", editpanel_up, editpanel_hi, editpanel_checked, editpanel_dn, editpanel_checkedhi);
+	new_toggle("mask.png", editpanel_up, editpanel_hi, editpanel_checked, editpanel_dn, editpanel_checkedhi);
+	new_toggle("projector.png", editpanel_up, editpanel_hi, editpanel_checked, editpanel_dn, editpanel_checkedhi);
+	new_toggle("protect.png", editpanel_up, editpanel_hi, editpanel_checked, editpanel_dn, editpanel_checkedhi);
+	new_toggle("show_meters.png", editpanel_up, editpanel_hi, editpanel_checked, editpanel_dn, editpanel_checkedhi);
+	new_toggle("titlesafe.png", editpanel_up, editpanel_hi, editpanel_checked, editpanel_dn, editpanel_checkedhi);
+	new_toggle("toolwindow.png", editpanel_up, editpanel_hi, editpanel_checked, editpanel_dn, editpanel_checkedhi);
 	new_toggle("eyedrop.png", 
 		editpanel_up, 
 		editpanel_hi, 
@@ -555,10 +555,10 @@ void DefaultTheme::get_recordgui_sizes(RecordGUI *gui, int w, int h)
 	recordgui_transport_x = recordgui_batch_x;
 	recordgui_transport_y = recordgui_batch_y + 150;
 
-	recordgui_buttons_x = recordgui_batch_x - 50;
-	recordgui_buttons_y = recordgui_transport_y + 40;
-	recordgui_options_x = recordgui_buttons_x;
-	recordgui_options_y = recordgui_buttons_y + 35;
+//	recordgui_buttons_x = recordgui_batch_x - 50;
+//	recordgui_buttons_y = recordgui_transport_y + 40;
+//	recordgui_options_x = recordgui_buttons_x;
+//	recordgui_options_y = recordgui_buttons_y + 35;
 
 	recordgui_batches_x = 10;
 	recordgui_batches_y = 270;
@@ -626,12 +626,12 @@ void DefaultTheme::get_vwindow_sizes(VWindowGUI *gui)
 
 void DefaultTheme::build_icons()
 {
-	mwindow_icon = new VFrame(get_image_data("heroine_icon.png"));
-	vwindow_icon = new VFrame(get_image_data("heroine_icon.png"));
-	cwindow_icon = new VFrame(get_image_data("heroine_icon.png"));
-	awindow_icon = new VFrame(get_image_data("heroine_icon.png"));
-	record_icon = new VFrame(get_image_data("heroine_icon.png"));
-	clip_icon = new VFrame(get_image_data("clip_icon.png"));
+        new_image("mwindow_icon", "heroine_icon.png");
+        new_image("vwindow_icon", "heroine_icon.png");
+        new_image("cwindow_icon", "heroine_icon.png");
+        new_image("awindow_icon", "heroine_icon.png");
+        new_image("record_icon", "heroine_icon.png");
+        new_image("clip_icon", "clip_icon.png");
 }
 
 
@@ -649,9 +649,9 @@ void DefaultTheme::build_bg_data()
 	new_image("resource128", "resource128.png");
 	new_image("resource64", "resource64.png");
 	new_image("resource32", "resource32.png");
-	plugin_bg_data = new VFrame(get_image_data("plugin_bg.png"));
-	title_bg_data = new VFrame(get_image_data("title_bg.png"));
-	vtimebar_bg_data = new VFrame(get_image_data("vwindow_timebar.png"));
+        new_image("plugin_bg_data", "plugin_bg.png");
+        new_image("title_bg_data", "title_bg.png");
+        new_image("vtimebar_bg_data", "vwindow_timebar.png");
 }
 
 
@@ -676,7 +676,7 @@ void DefaultTheme::build_overlays()
 
 void DefaultTheme::draw_rwindow_bg(RecordGUI *gui)
 {
-	int y;
+/*	int y;
 	int margin = 50;
 	int margin2 = 80;
 	gui->draw_9segment(recordgui_batch_x - margin,
@@ -694,7 +694,7 @@ void DefaultTheme::draw_rwindow_bg(RecordGUI *gui)
 		mwindow->session->rwindow_w,
 		mwindow->session->rwindow_h - y,
 		rgui_list);
-}
+*/}
 
 void DefaultTheme::draw_rmonitor_bg(RecordMonitorGUI *gui)
 {
