@@ -22,10 +22,12 @@
 #include "bcsignals.h"
 #include "channeldb.h"
 #include "channelpicker.h"
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
 #include "edl.h"
 #include "edlsession.h"
 #include "formattools.h"
-#include "../hvirtual_config.h"
 #include "language.h"
 #include "mwindow.h"
 #include "vdeviceprefs.h"
@@ -466,12 +468,14 @@ char* VDriverMenu::driver_to_string(int driver)
 		case CAPTURE_LML:
 			sprintf(string, CAPTURE_LML_TITLE);
 			break;
+#ifdef HAVE_FIREWIRE
 		case CAPTURE_FIREWIRE:
 			sprintf(string, CAPTURE_FIREWIRE_TITLE);
 			break;
 		case CAPTURE_IEC61883:
 			sprintf(string, CAPTURE_IEC61883_TITLE);
 			break;
+#endif
 		case CAPTURE_DVB:
 			sprintf(string, CAPTURE_DVB_TITLE);
 			break;
@@ -490,6 +494,7 @@ char* VDriverMenu::driver_to_string(int driver)
 		case PLAYBACK_BUZ:
 			sprintf(string, PLAYBACK_BUZ_TITLE);
 			break;
+#ifdef HAVE_FIREWIRE
 		case PLAYBACK_FIREWIRE:
 			sprintf(string, PLAYBACK_FIREWIRE_TITLE);
 			break;
@@ -499,6 +504,7 @@ char* VDriverMenu::driver_to_string(int driver)
 		case PLAYBACK_IEC61883:
 			sprintf(string, PLAYBACK_IEC61883_TITLE);
 			break;
+#endif
 		default:
 			sprintf(string, "");
 	}
@@ -516,8 +522,10 @@ void VDriverMenu::create_objects()
 #endif
 		add_item(new VDriverItem(this, SCREENCAPTURE_TITLE, SCREENCAPTURE));
 		add_item(new VDriverItem(this, CAPTURE_BUZ_TITLE, CAPTURE_BUZ));
+#ifdef HAVE_FIREWIRE
 		add_item(new VDriverItem(this, CAPTURE_FIREWIRE_TITLE, CAPTURE_FIREWIRE));
 		add_item(new VDriverItem(this, CAPTURE_IEC61883_TITLE, CAPTURE_IEC61883));
+#endif
 		add_item(new VDriverItem(this, CAPTURE_DVB_TITLE, CAPTURE_DVB));
 	}
 	else
@@ -528,9 +536,11 @@ void VDriverMenu::create_objects()
 		add_item(new VDriverItem(this, PLAYBACK_X11_GL_TITLE, PLAYBACK_X11_GL));
 #endif
 		add_item(new VDriverItem(this, PLAYBACK_BUZ_TITLE, PLAYBACK_BUZ));
+#ifdef HAVE_FIREWIRE
 		add_item(new VDriverItem(this, PLAYBACK_FIREWIRE_TITLE, PLAYBACK_FIREWIRE));
 		add_item(new VDriverItem(this, PLAYBACK_DV1394_TITLE, PLAYBACK_DV1394));
 		add_item(new VDriverItem(this, PLAYBACK_IEC61883_TITLE, PLAYBACK_IEC61883));
+#endif
 	}
 }
 

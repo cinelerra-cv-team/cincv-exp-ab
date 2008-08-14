@@ -22,8 +22,9 @@
 #ifndef VDEVICEV4L2_H
 #define VDEVICEV4L2_H
 
-
-#include "../hvirtual_config.h"
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
 #ifdef HAVE_VIDEO4LINUX2
 
 #include "vdevicebase.h"
