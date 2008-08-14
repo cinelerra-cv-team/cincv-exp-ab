@@ -340,18 +340,16 @@ AC_SUBST(CPU_CFLAGS)
 
 ############## END OF MMX / 3DNOW
 
-     PKG_CHECK_MODULES([FFMPEG_TEMP], [libavcodec libpostproc])
-     FFMPEG_FOLDER=""
-     FFMPEG_EXTERNALTEXT="External ffmpeg"
-		   
-	     PKG_CHECK_MODULES([FFMPEG], [libavcodec libpostproc libavformat])
-	     FFMPEG_CFLAGS="$FFMPEG_CFLAGS -I/usr/include/libavcodec -I/usr/include/libavformat"
+############## FFMPEG
 
-AC_SUBST(FFMPEG_FOLDER)
+FFMPEG_EXTERNALTEXT="External ffmpeg"
+PKG_CHECK_MODULES([FFMPEG], [libavcodec libpostproc libavformat])
+FFMPEG_CFLAGS="$FFMPEG_CFLAGS -I/usr/include/libavcodec -I/usr/include/libavformat"
+
 AC_SUBST(FFMPEG_CFLAGS)
 AC_SUBST(FFMPEG_LIBS)
 AC_SUBST(FFMPEG_EXTERNALTEXT)
-############# END external ffmpeg
+############# END FFMPEG
 
 ############## XIPH
 PKG_CHECK_MODULES(libogg,ogg >= 1.1,[libogg=yes],:)
