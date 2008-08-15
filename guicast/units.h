@@ -83,6 +83,8 @@ public:
 	static float *topower;
 	float db;
 	float infinitygain;
+ private:
+	static float *allocated;
 };
 
 // Third octave frequency table
