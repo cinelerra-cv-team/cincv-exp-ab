@@ -68,10 +68,7 @@ void ClipEdit::handle_close_event(int result)
 //			mwindow->vwindow->gui->update_sources(mwindow->vwindow->gui->source->get_text());
 
 
-		mwindow->awindow->gui->lock_window();
-		mwindow->awindow->gui->update_assets();
-		mwindow->awindow->gui->flush();
-		mwindow->awindow->gui->unlock_window();
+		mwindow->awindow->gui->async_update_assets();
 
 // Change VWindow to it if vwindow was called
 // But this doesn't let you easily create a lot of clips.

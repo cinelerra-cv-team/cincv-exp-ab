@@ -44,7 +44,7 @@ void AWindow::create_objects()
 {
 	gui = new AWindowGUI(mwindow, this);
 	gui->create_objects();
-	gui->update_assets();
+	gui->async_update_assets();
 	asset_remove = new AssetRemoveThread(mwindow);
 	asset_edit = new AssetEdit(mwindow);
 	clip_edit = new ClipEdit(mwindow, this, 0);

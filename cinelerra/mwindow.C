@@ -2041,10 +2041,7 @@ void MWindow::update_project(int load_mode)
 		edl,
 		1);
 
-	awindow->gui->lock_window("MWindow::update_project");
-	awindow->gui->update_assets();
-	awindow->gui->flush();
-	awindow->gui->unlock_window();
+	awindow->gui->async_update_assets();
 	gui->flush();
 }
 
@@ -2190,10 +2187,7 @@ void MWindow::remove_assets_from_project(int push_undo)
 		0);
 	gui->unlock_window();
 
-	awindow->gui->lock_window("MWindow::remove_assets_from_project 4");
-	awindow->gui->update_assets();
-	awindow->gui->flush();
-	awindow->gui->unlock_window();
+	awindow->gui->async_update_assets();
 
 // Removes from playback here
 	sync_parameters(CHANGE_ALL);

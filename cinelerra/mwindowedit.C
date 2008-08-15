@@ -1160,7 +1160,7 @@ void MWindow::paste()
 		restart_brender();
 		update_plugin_guis();
 		gui->update(1, 2, 1, 1, 0, 1, 0);
-		awindow->gui->update_assets();
+		awindow->gui->async_update_assets();
 		sync_parameters(CHANGE_EDL);
 	}
 
@@ -2202,10 +2202,7 @@ void MWindow::undo_entry(BC_WindowBase *calling_window_gui)
 		gui->unlock_window();
 	
 
-	awindow->gui->lock_window("MWindow::undo_entry 3");
-	awindow->gui->update_assets();
-	awindow->gui->flush();
-	awindow->gui->unlock_window();
+ 	awindow->gui->async_update_assets();
 
 	cwindow->playback_engine->que->send_command(CURRENT_FRAME, 
 	    		   CHANGE_ALL,
@@ -2220,9 +2217,7 @@ void MWindow::new_folder(char *new_folder)
 	undo->update_undo_before();
 	edl->new_folder(new_folder);
 	undo->update_undo_after(_("new folder"), LOAD_ALL);
-	awindow->gui->lock_window("MWindow::new_folder");
-	awindow->gui->update_assets();
-	awindow->gui->unlock_window();
+ 	awindow->gui->async_update_assets();
 }
 
 void MWindow::delete_folder(char *folder)
