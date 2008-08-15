@@ -134,6 +134,8 @@ public:
 	char text[BCTEXTLEN];
 // Encoding to convert from 
 	char encoding[BCTEXTLEN];
+// Time Code Format
+ 	char timecodeformat[BCTEXTLEN];
 };
 
 class FontEntry

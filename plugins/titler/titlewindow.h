@@ -59,6 +59,7 @@ class TitleBottom;
 class TitleColorThread;
 class TitleSpeed;
 class TitleTimecode;
+class TitleTimecodeFormat;
 class TitleOutline;
 
 class TitleWindow : public PluginClientWindow
@@ -122,12 +123,14 @@ public:
 	BC_Title *speed_title;
 	TitleSpeed *speed;
 	TitleTimecode *timecode;
+	TitleTimecodeFormat *timecodeformat;
 
 // Color preview
 	ArrayList<BC_ListBoxItem*> sizes;
 	ArrayList<BC_ListBoxItem*> encodings;
 	ArrayList<BC_ListBoxItem*> paths;
 	ArrayList<BC_ListBoxItem*> fonts;
+	ArrayList<BC_ListBoxItem*> timecodeformats;
 };
 
 
@@ -225,6 +228,15 @@ class TitleTimecode : public BC_CheckBox
 {
 public:
 	TitleTimecode(TitleMain *client, int x, int y);
+	int handle_event();
+	TitleMain *client;
+	TitleWindow *window;
+};
+class TitleTimecodeFormat : public BC_PopupTextBox
+{
+public:
+	TitleTimecodeFormat(TitleMain *client, TitleWindow *window, int x, int y);
+	~TitleTimecodeFormat();
 	int handle_event();
 	TitleMain *client;
 	TitleWindow *window;

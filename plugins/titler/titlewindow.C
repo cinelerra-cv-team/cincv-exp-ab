@@ -57,6 +57,8 @@ TitleWindow::~TitleWindow()
 {
 	sizes.remove_all_objects();
 	encodings.remove_all_objects();
+	timecodeformats.remove_all_objects();
+	delete timecodeformat;
 	delete color_thread;
 #ifdef USE_OUTLINE
 	delete color_stroke_thread;
@@ -68,6 +70,16 @@ TitleWindow::~TitleWindow()
 void TitleWindow::create_objects()
 {
 	int x = 10, y = 10;
+ 	timecodeformats.append(new BC_ListBoxItem(TIME_SECONDS__STR));
+ 	timecodeformats.append(new BC_ListBoxItem(TIME_HMS__STR)); 		
+ 	timecodeformats.append(new BC_ListBoxItem(TIME_HMS2__STR));     		
+ 	timecodeformats.append(new BC_ListBoxItem(TIME_HMS3__STR));    		
+ 	timecodeformats.append(new BC_ListBoxItem(TIME_HMSF__STR));    		
+ 	//	timecodeformats.append(new BC_ListBoxItem(TIME_SAMPLES__STR)); 		
+ 	//	timecodeformats.append(new BC_ListBoxItem(TIME_SAMPLES_HEX__STR)); 	
+ 	timecodeformats.append(new BC_ListBoxItem(TIME_FRAMES__STR)); 		
+ 	//	timecodeformats.append(new BC_ListBoxItem(TIME_FEET_FRAMES__STR)); 	
+
 #define COLOR_W 50
 #define COLOR_H 30
 	
@@ -284,6 +296,12 @@ void TitleWindow::create_objects()
 	add_tool(timecode = new TitleTimecode(client, x, y));
 
 
+	x += timecode->get_w() + 5;
+	BC_SubWindow *thisw;
+	add_tool(thisw = new BC_Title(x, y+4, _("Format:")));
+	x += thisw->get_w() + 5;
+	timecodeformat = new TitleTimecodeFormat(client, this, x, y);
+	timecodeformat->create_objects();
 
 	x = 10;
 	y += 30;
@@ -439,6 +457,7 @@ void TitleWindow::update()
 	size->update(client->config.size);
 	encoding->update(client->config.encoding);
         timecode->update(client->config.timecode);
+ 	timecodeformat->update(client->config.timecodeformat);
 	motion->update(TitleMain::motion_to_text(client->config.motion_strategy));
 	loop->update(client->config.loop);
 	dropshadow->update((float)client->config.dropshadow);
@@ -615,6 +634,29 @@ TitleTimecode::TitleTimecode(TitleMain *client, int x, int y)
 int TitleTimecode::handle_event()
 {
 	client->config.timecode = get_value();
+	client->send_configure_change();
+	return 1;
+}
+
+TitleTimecodeFormat::TitleTimecodeFormat(TitleMain *client, TitleWindow *window, int x, int y)
+ : BC_PopupTextBox(window, 
+		&window->timecodeformats,
+		client->config.timecodeformat,
+		x, 
+		y, 
+		140,
+		160)
+{
+	this->client = client;
+	this->window = window;
+}
+
+TitleTimecodeFormat::~TitleTimecodeFormat()
+{
+}
+int TitleTimecodeFormat::handle_event()
+{
+	strcpy(client->config.timecodeformat, get_text());
 	client->send_configure_change();
 	return 1;
 }
