@@ -780,6 +780,8 @@ typedef struct
 	int in_x, in_y, in_w, in_h, out_w, out_h;
 	int color_model, row_span;
 
+/* Adjustable timecode frame number */
+ 	int64_t current_frame;
 } quicktime_t;
 
 
