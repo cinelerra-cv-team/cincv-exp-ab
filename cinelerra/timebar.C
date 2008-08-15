@@ -29,6 +29,7 @@
 #include "filexml.h"
 #include "fonts.h"
 #include "labels.h"
+#include "labeledit.h"
 #include "localsession.h"
 #include "maincursor.h"
 #include "mainundo.h"
@@ -68,6 +69,7 @@ LabelGUI::LabelGUI(MWindow *mwindow,
 	this->gui = 0;
 	this->pixel = pixel;
 	this->position = position;
+	this->label = 0;
 }
 
 LabelGUI::~LabelGUI()
@@ -89,6 +91,18 @@ int LabelGUI::translate_pixel(MWindow *mwindow, int pixel)
 void LabelGUI::reposition()
 {
 	reposition_window(translate_pixel(mwindow, pixel), BC_Toggle::get_y());
+}
+
+int LabelGUI::button_press_event()
+{
+	if (this->is_event_win() && get_buttonpress() == 3) {
+		if (label)
+			timebar->label_edit->edit_label(label);
+	} else {
+		BC_Toggle::button_press_event();
+	}
+	if (label)
+		set_tooltip(this->label->textstr);
 }
 
 int LabelGUI::handle_event()
@@ -180,12 +194,14 @@ TimeBar::TimeBar(MWindow *mwindow,
 //printf("TimeBar::TimeBar %d %d %d %d\n", x, y, w, h);
 	this->gui = gui;
 	this->mwindow = mwindow;
+	label_edit = new LabelEdit(mwindow, mwindow->awindow, 0);
 }
 
 TimeBar::~TimeBar()
 {
 	if(in_point) delete in_point;
 	if(out_point) delete out_point;
+	if(label_edit) delete label_edit;
 	labels.remove_all_objects();
 	presentations.remove_all_objects();
 }
@@ -232,6 +248,8 @@ void TimeBar::update_labels()
 							LabelGUI::get_y(mwindow, this), 
 							current->position));
 					new_label->set_cursor(ARROW_CURSOR);
+					new_label->set_tooltip(current->textstr);
+					new_label->label = current;
 					labels.append(new_label);
 				}
 				else
@@ -249,6 +267,8 @@ void TimeBar::update_labels()
 					}
 
 					labels.values[output]->position = current->position;
+					labels.values[output]->set_tooltip(current->textstr);
+					labels.values[output]->label = current;
 				}
 
 				if(edl->local_session->get_selectionstart(1) <= current->position &&

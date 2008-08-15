@@ -30,6 +30,7 @@
 #include "awindowmenu.inc"
 #include "edl.inc"
 #include "guicast.h"
+#include "labels.h"
 #include "mwindow.inc"
 #include "newfolder.inc"
 #include "pluginserver.inc"
@@ -48,6 +49,8 @@ class AWindowPaste;
 class AWindowAppend;
 class AWindowView;
 
+class LabelPopup;
+class LabelPopupEdit;
 
 class AWindowGUI;
 
@@ -57,6 +60,7 @@ public:
 	AssetPicon(MWindow *mwindow, AWindowGUI *gui, Asset *asset);
 	AssetPicon(MWindow *mwindow, AWindowGUI *gui, EDL *edl);
 	AssetPicon(MWindow *mwindow, AWindowGUI *gui, PluginServer *plugin);
+ 	AssetPicon(MWindow *mwindow, AWindowGUI *gui, Label *plugin);
 	AssetPicon(MWindow *mwindow, AWindowGUI *gui, const char *folder);
 	virtual ~AssetPicon();
 
@@ -81,6 +85,7 @@ public:
 
 	int persistent;
 	PluginServer *plugin;
+	Label *label;
 };
 
 
@@ -109,6 +114,7 @@ public:
 		int do_video, 
 		int is_realtime, 
 		int is_transition);
+	void create_label_folder();
 	void copy_picons(ArrayList<BC_ListBoxItem*> *dst, 
 		ArrayList<BC_ListBoxItem*> *src, 
 		char *folder);
@@ -135,6 +141,7 @@ public:
 	ArrayList<BC_ListBoxItem*> veffects;
 	ArrayList<BC_ListBoxItem*> atransitions;
 	ArrayList<BC_ListBoxItem*> vtransitions;
+	ArrayList<BC_ListBoxItem*> labellist;
 
 // Currently displayed data for listboxes
 // Currently displayed assets + comments
@@ -152,11 +159,13 @@ public:
 
 // Popup menus
 	AssetPopup *asset_menu;
+	LabelPopup *label_menu;
 	AssetListMenu *assetlist_menu;
 	FolderListMenu *folderlist_menu;
 // Temporary for reading picons from files
 	VFrame *temp_picon;
 
+	int allow_iconlisting;
 private:
 	void update_folder_list();
 	void update_asset_list();
@@ -307,6 +316,34 @@ public:
 	MWindow *mwindow;
 	AWindowGUI *gui;
 	int x, y;
+};
+
+class LabelPopup : public BC_PopupMenu
+{
+public:
+	LabelPopup(MWindow *mwindow, AWindowGUI *gui);
+	~LabelPopup();
+
+	void create_objects();
+// Set mainsession with the current selections
+	int update();
+
+	MWindow *mwindow;
+	AWindowGUI *gui;
+
+	LabelPopupEdit *editlabel;
+};
+
+class LabelPopupEdit : public BC_MenuItem
+{
+public:
+	LabelPopupEdit(MWindow *mwindow, LabelPopup *popup);
+	~LabelPopupEdit();
+
+	int handle_event();
+
+	MWindow *mwindow;
+	LabelPopup *popup;
 };
 
 #endif

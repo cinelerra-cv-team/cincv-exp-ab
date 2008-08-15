@@ -26,6 +26,7 @@
 #include "guicast.h"
 #include "filexml.inc"
 #include "labels.inc"
+#include "labeledit.inc"
 #include "mwindow.inc"
 #include "recordlabel.inc"
 #include "testobject.h"
@@ -63,6 +64,8 @@ public:
 	static int get_y(MWindow *mwindow, TimeBar *timebar);
 	void reposition();
 
+	Label *label;
+	int button_press_event();
 	MWindow *mwindow;
 	VWindowGUI *gui;
 	TimeBar *timebar;
@@ -128,6 +131,8 @@ public:
 	int button_release_event();
 	int cursor_motion_event();
 	int repeat_event(int64_t duration);
+
+	LabelEdit *label_edit;
 
 // Synchronize label, in/out, presentation display with master EDL
 	void update(int do_range = 1, int do_others = 1);
