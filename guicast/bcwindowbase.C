@@ -2874,7 +2874,6 @@ void BC_WindowBase::set_done(int return_value)
 		completion_lock->unlock();
 	}
 #else // SINGLE_THREAD
-	if(event_thread)
 	{
 // Must use a different display handle to send events.
 		Display *display = BC_WindowBase::init_display(display_name);
@@ -2890,14 +2889,7 @@ void BC_WindowBase::set_done(int return_value)
 // asynchronous with XNextEvent.
 // This causes BC_WindowEvents to forward a copy of the event to run_window where 
 // it is deleted.
-		event_thread->done = 1;
-		XSendEvent(display, 
-			win, 
-			0, 
-			0, 
-			event);
-		XFlush(display);
-		XCloseDisplay(display);
+// Deletion of event_thread is done at the end of BC_WindowBase::run_window() - by calling the destructor
 		put_event(event);
 	}
 #endif
