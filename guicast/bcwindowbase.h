@@ -64,6 +64,7 @@
 #include "bcpopupmenu.inc"
 #include "bcpot.inc"
 #include "bcprogress.inc"
+#include "bcrelocatablewidget.h"
 #include "bcrepeater.inc"
 #include "bcresources.inc"
 #include "bcscrollbar.inc"
@@ -119,7 +120,7 @@ public:
 
 
 // Windows, subwindows, popupwindows inherit from this
-class BC_WindowBase
+class BC_WindowBase : public BC_RelocatableWidget
 {
 public:
 	BC_WindowBase();
@@ -529,6 +530,7 @@ public:
 	int raise_window(int do_flush = 1);
 	int set_tooltips(int tooltips_enabled);
 	int resize_window(int w, int h);
+	int reposition_widget(int x, int y, int w = -1, int h = -1);
 	int reposition_window(int x, int y, int w = -1, int h = -1);
 // Cause a repeat event to be dispatched every duration.
 // duration is milliseconds
