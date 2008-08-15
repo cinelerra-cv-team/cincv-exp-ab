@@ -34,7 +34,10 @@ libquicktimehv_la_SOURCES = \
 	avi_idx1.c \
 	avi_movi.c \
 	avi_strl.c \
-			  avi_odml.c avi_ix.c avi_indx.c avi_riff.c \
+	avi_odml.c \
+	avi_ix.c \
+	avi_indx.c \
+	avi_riff.c \
 	cmodel_default.c \
 	cmodel_float.c \
 	cmodel_yuv420p.c \
@@ -62,6 +65,7 @@ libquicktimehv_la_SOURCES = \
 	minf.c \
 	moov.c \
 	mp4a.c \
+	mpeg4.c \
 	mvhd.c \
 	plugin.c \
 	qdm2.c \
@@ -76,11 +80,33 @@ libquicktimehv_la_SOURCES = \
 	raw.c \
 	rawaudio.c \
 	rle.c \
-													smhd.c stbl.c stco.c stsc.c stsd.c stsdtable.c stss.c stsz.c stts.c \
-													tkhd.c trak.c twos.c udta.c ulaw.c util.c v308.c v408.c v410.c vmhd.c \
+	smhd.c \
+	stbl.c \
+	stco.c \
+	stsc.c \
+	stsd.c \
+	stsdtable.c \
+	stss.c \
+	stsz.c \
+	stts.c \
+	tkhd.c \
+	trak.c \
+	twos.c \
+	udta.c \
+	ulaw.c \
+	util.c \
+	v308.c \
+	v408.c \
+	v410.c \
+	vmhd.c \
 	vbraudio.c \
-													vorbis.c workarounds.c yuv2.c yuv4.c yv12.c wmx2.c \
-													wma.c mpeg4.c
+	vorbis.c \
+	workarounds.c \
+	yuv2.c \
+	yuv4.c \
+	yv12.c \
+	wmx2.c \
+	wma.c
 
 noinst_HEADERS = cmodel_permutation.h \
 	codecs.h \
@@ -137,8 +163,6 @@ INCLUDES = -I$(top_srcdir)/libmpeg3
 
 pkgincludedir=$(includedir)/quicktime
 pkginclude_HEADERS=quicktime.h qtprivate.h
-
-LIBTOOL = $(SHELL) $(top_builddir)/libtool $(LTC_FLAGS)
 
 dist-hook:
 	-rm -rf $(distdir)/docs/CVS
