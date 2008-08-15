@@ -212,6 +212,9 @@ typedef struct
 	quicktime_esds_t esds;
 	quicktime_avcc_t avcc;
 	quicktime_frma_t frma;
+
+ 	int extradata_size;
+ 	char *extradata;
 } quicktime_stsd_table_t;
 
 
