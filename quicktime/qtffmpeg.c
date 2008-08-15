@@ -152,7 +152,12 @@ quicktime_ffmpeg_t* quicktime_new_ffmpeg(int cpus,
 			context->extradata_size = avcc->data_size;
 		}
 
-		if(cpus > 1)
+ 		if(cpus > 1 && 
+ 				(ffmpeg_id == CODEC_ID_MPEG4 ||
+ 			         ffmpeg_id == CODEC_ID_MPEG1VIDEO ||
+ 			         ffmpeg_id == CODEC_ID_MPEG2VIDEO ||
+ 			         ffmpeg_id == CODEC_ID_H263P || 
+ 			         ffmpeg_id == CODEC_FLAG_H263P_SLICE_STRUCT))
 		{
 			avcodec_thread_init(context, cpus);
 // Not exactly user friendly.
