@@ -417,8 +417,8 @@ int quicktime_chunk_bytes(quicktime_t *file,
 }
 
 int64_t quicktime_sample_range_size(quicktime_trak_t *trak, 
-	long chunk_sample, 
-	long sample)
+	int64_t chunk_sample, 
+	int64_t sample)
 {
 	quicktime_stsz_table_t *table = trak->mdia.minf.stbl.stsz.table;
 	int64_t i, total;
@@ -443,7 +443,7 @@ int64_t quicktime_sample_range_size(quicktime_trak_t *trak,
 
 int64_t quicktime_sample_to_offset(quicktime_t *file, 
 	quicktime_trak_t *trak, 
-	long sample)
+	int64_t sample)
 {
 	int64_t chunk, chunk_sample, chunk_offset1, chunk_offset2;
 

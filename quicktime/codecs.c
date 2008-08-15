@@ -363,7 +363,7 @@ void quicktime_flush_vcodec(quicktime_t *file, int track)
 	((quicktime_codec_t*)file->vtracks[track].codec)->flush(file, track);
 }
 
-int64_t quicktime_samples_to_bytes(quicktime_trak_t *track, long samples)
+int64_t quicktime_samples_to_bytes(quicktime_trak_t *track, int64_t samples)
 {
 	char *compressor = track->mdia.minf.stbl.stsd.table[0].format;
 	int channels = track->mdia.minf.stbl.stsd.table[0].channels;
