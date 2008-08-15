@@ -538,7 +538,7 @@ int BC_ListBox::initialize()
 {
 	if(is_popup)
 	{
-		for(int i = 0; i < 4; i++)
+		for(int i = 0; i < 3; i++)
 		{
 			button_images[i] = new BC_Pixmap(parent_window, 
 				BC_WindowBase::get_resources()->listbox_button[i], 
