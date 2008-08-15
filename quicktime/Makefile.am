@@ -12,7 +12,7 @@ AM_CFLAGS = \
 	-DENCORE_INCLUDE=\"thirdparty/encore50/encore.h\" \
 	@FFMPEG_CFLAGS@
 
-libquicktimehv_la_LDFLAGS = -version-info 1:0:0 -release 1.6.0 -Wl,--no-undefined 
+libquicktimehv_la_LDFLAGS = -version-info 1:0:0 -release 2.3.0 -Wl,--no-undefined 
 
 libquicktimehv_la_LIBADD = \
 	@FFMPEG_LIBS@ \
