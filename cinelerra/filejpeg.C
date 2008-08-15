@@ -31,6 +31,7 @@
 #include "quicktime.h"
 #include "vframe.h"
 #include "videodevice.inc"
+#include "interlacemodes.h"
 
 
 
@@ -218,6 +219,8 @@ int FileJPEG::read_frame_header(char *path)
 
 	asset->width = jpeg_decompress.image_width;
 	asset->height = jpeg_decompress.image_height;
+
+	asset->interlace_mode = BC_ILACE_MODE_NOTINTERLACED;
 
 	jpeg_destroy((j_common_ptr)&jpeg_decompress);
 	fclose(stream);

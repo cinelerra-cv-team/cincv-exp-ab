@@ -1,6 +1,7 @@
 #include "colormodels.h"
 #include "funcprotos.h"
 #include "qtasf_codes.h"
+#include "interlacemodes.h"
 #include "quicktime.h"
 #include <string.h>
 #include <sys/stat.h>
@@ -620,6 +621,27 @@ int quicktime_video_depth(quicktime_t *file, int track)
 	if(file->total_vtracks)
 		return file->vtracks[track].track->mdia.minf.stbl.stsd.table[0].depth;
 	return 0;
+}
+
+int quicktime_video_interlacemode(quicktime_t *file, int track)
+{
+	if(file->total_vtracks) {
+		if (file->vtracks[track].track->mdia.minf.stbl.stsd.table[0].fields == 1)
+			return BC_ILACE_MODE_NOTINTERLACED;
+		if (file->vtracks[track].track->mdia.minf.stbl.stsd.table[0].fields == 2)
+		{
+			switch (file->vtracks[track].track->mdia.minf.stbl.stsd.table[0].field_dominance) 
+			{
+			case 0:
+				return BC_ILACE_MODE_UNDETECTED;
+			case 1:
+				return BC_ILACE_MODE_TOP_FIRST;
+			case 6:
+				return BC_ILACE_MODE_BOTTOM_FIRST;
+			}
+		}
+	}
+  	return BC_ILACE_MODE_UNDETECTED;
 }
 
 void quicktime_set_cmodel(quicktime_t *file, int colormodel)

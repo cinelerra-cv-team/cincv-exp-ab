@@ -37,6 +37,7 @@
 #include "ImfVersion.h"
 #include "mwindow.inc"
 #include "vframe.h"
+#include "interlacemodes.h"
 
 
 class EXRIStream : public Imf::IStream
@@ -304,6 +305,7 @@ int FileEXR::read_frame_header(char *path)
 	
 	asset->width = dw.max.x - dw.min.x + 1;
 	asset->height = dw.max.y - dw.min.y + 1;
+	asset->interlace_mode = BC_ILACE_MODE_NOTINTERLACED;
 
 	const Imf::ChannelList &channels = file.header().channels();
 

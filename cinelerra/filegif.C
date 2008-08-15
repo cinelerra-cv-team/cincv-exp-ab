@@ -23,6 +23,7 @@
 #include "file.h"
 #include "filetiff.h"
 #include "vframe.h"
+#include "interlacemodes.h"
 
 
 FileGIF::FileGIF(Asset *asset)
@@ -93,6 +94,7 @@ int FileGIF::read_header()
 	
 	GIFGetField(stream, GIFTAG_IMAGEWIDTH, &(asset->width));
 	GIFGetField(stream, GIFTAG_IMAGELENGTH, &(asset->height));
+	asset->interlacemode = BC_ILACE_MODE_NOTINTERLACED;
 	asset->layers = 1;
 
 	GIFClose(stream);

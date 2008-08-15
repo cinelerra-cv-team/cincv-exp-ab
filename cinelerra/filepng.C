@@ -23,6 +23,7 @@
 #include "edit.h"
 #include "file.h"
 #include "filepng.h"
+#include "interlacemodes.h"
 #include "language.h"
 #include "mwindow.inc"
 #include "quicktime.h"
@@ -163,6 +164,9 @@ int FilePNG::read_frame_header(char *path)
 
 	asset->width = png_get_image_width(png_ptr, info_ptr);
 	asset->height = png_get_image_height(png_ptr, info_ptr);
+	
+	asset->interlace_mode = BC_ILACE_MODE_NOTINTERLACED;
+
 	color_type = png_get_color_type(png_ptr, info_ptr);
 	color_depth = png_get_bit_depth(png_ptr,info_ptr);
 	
