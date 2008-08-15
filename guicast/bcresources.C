@@ -505,6 +505,7 @@ BC_Resources::BC_Resources()
 	
 	generic_button_images = default_generic_button_data;
 	generic_button_margin = 15;
+        draw_clock_background=1;
 
 
 
@@ -577,6 +578,7 @@ BC_Resources::BC_Resources()
 	button_down = MDGREY;         // face when down
 	button_up = MEGREY;           // face when up
 	button_shadow = DKGREY;       // dark corner
+	button_uphighlighted = RED;   // upper side when highlighted
 
 	tumble_data = default_tumbler_data;
 	tumble_duration = 150;
@@ -608,6 +610,7 @@ BC_Resources::BC_Resources()
 	menu_title_text = BLACK;
 	popup_title_text = BLACK;
 	menu_item_text = BLACK;
+	menu_highlighted_fontcolor = BLACK;
 	progress_text = BLACK;
 
 
