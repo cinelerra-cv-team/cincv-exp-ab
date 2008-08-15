@@ -21,6 +21,10 @@
 
 #define GL_GLEXT_PROTOTYPES
 
+#if defined(HAVE_CONFIG_H)
+#include "config.h"
+#endif
+
 #include "bcpbuffer.h"
 #include "bcresources.h"
 #include "bcsignals.h"
