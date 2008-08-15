@@ -2,7 +2,6 @@
 Merging:
 
 cinelerra
-libmpeg3
 quicktime
 plugins
 
@@ -10,3 +9,4 @@ plugins
 Completed:
 
 guicast
+libmpeg3
