@@ -378,6 +378,7 @@ int BC_MenuItem::draw()
 						h);
 				}
 			}
+			menu_popup->get_popup()->set_color(top_level->get_resources()->menu_highlighted_fontcolor);
 		}
 
 		menu_popup->get_popup()->set_color(resources->menu_item_text);

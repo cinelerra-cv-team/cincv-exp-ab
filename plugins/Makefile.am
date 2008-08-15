@@ -1,6 +1,7 @@
 THEMES= \
 	suv \
-	defaulttheme
+	defaulttheme \
+	bluedottheme
 	
 
 SUBDIRS= \

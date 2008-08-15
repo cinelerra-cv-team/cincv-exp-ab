@@ -67,9 +67,9 @@ DefaultThemeMain::~DefaultThemeMain()
 {
 }
 
-char* DefaultThemeMain::plugin_title()
+const char* DefaultThemeMain::plugin_title()
 {
-	return "Blond";
+	return "Blond-cv";
 }
 
 Theme* DefaultThemeMain::new_theme()
@@ -110,6 +110,13 @@ void DefaultTheme::initialize()
 			"hslider_bg_up.png",
 			"hslider_bg_hi.png",
 			"hslider_bg_dn.png");
+	resources->vertical_slider_data = new_image_set(6,
+			"vertical_slider_fg_up.png",
+			"vertical_slider_fg_hi.png",
+			"vertical_slider_fg_dn.png",
+			"vertical_slider_bg_up.png",
+			"vertical_slider_bg_hi.png",
+			"vertical_slider_bg_dn.png");
 	resources->progress_images = new_image_set(2,
 			"progress_bg.png",
 			"progress_hi.png");
@@ -127,6 +134,14 @@ void DefaultTheme::initialize()
 		"listbox_column_up.png",
 		"listbox_column_hi.png",
 		"listbox_column_dn.png");
+	resources->listbox_expand = new_image_set(5,
+		"listbox_expandup.png",
+		"listbox_expanduphi.png",
+		"listbox_expandchecked.png",
+		"listbox_expanddn.png",
+        	"listbox_expandcheckedhi.png");
+	resources->listbox_up = new_image("listbox_up.png");
+	resources->listbox_dn = new_image("listbox_dn.png");
 	resources->pan_data = new_image_set(7,
 			"pan_up.png", 
 			"pan_hi.png", 
@@ -413,9 +428,85 @@ void DefaultTheme::initialize()
 	title_color = WHITE;
 	recordgui_fixed_color = YELLOW;
 	recordgui_variable_color = RED;
+	resources->medium_font = N_("-*-helvetica-bold-r-normal-*-14-*");
 
 	channel_position_color = MEYELLOW;
 	resources->meter_title_w = 25;
+
+	// (asset) edit info text color
+	edit_font_color = YELLOW;
+
+	//bgcolor
+	resources->bg_color = BLOND;
+
+	//checkbox
+ 	resources->checkbox_images = new_image_set(5,
+  		"checkbox_up.png", 
+  		"checkbox_uphi.png", 
+  		"checkbox_checked.png", 
+  		"checkbox_down.png", 
+  		"checkbox_checkedhi.png");
+
+	//radiobox
+ 	resources->radial_images = new_image_set(5,
+  		"radial_up.png", 
+  		"radial_uphi.png", 
+  		"radial_checked.png", 
+  		"radial_down.png", 
+  		"radial_checkedhi.png");
+	
+	//labels
+ 	resources->label_images = new_image_set(5,
+  		"radial_up.png", 
+  		"radial_uphi.png", 
+  		"radial_checked.png", 
+  		"radial_down.png", 
+  		"radial_checkedhi.png");
+
+	//filebox
+  	resources->filebox_text_images = new_image_set(3,
+  		"file_text_up.png", 
+  		"file_text_uphi.png", 
+  		"file_text_dn.png");
+  	resources->filebox_icons_images = new_image_set(3,
+  		"file_icons_up.png", 
+  		"file_icons_uphi.png", 
+  		"file_icons_dn.png");
+  	resources->filebox_updir_images = new_image_set(3,
+  		"file_updir_up.png", 
+  		"file_updir_uphi.png", 
+  		"file_updir_dn.png");
+  	resources->filebox_newfolder_images = new_image_set(3,
+  		"file_newfolder_up.png", 
+  		"file_newfolder_uphi.png", 
+  		"file_newfolder_dn.png");
+
+/*	resources->type_to_icon = new_image_set(5,
+                "file_folder.png",
+	        "file_unknown.png",
+          	"file_film.png",
+	        "file_sound.png",
+	        "file_column.png");
+*/
+	//meters
+	resources->xmeter_images = new_image_set(5,
+		"xmeter_normal.png",
+		"xmeter_green.png",
+		"xmeter_red.png",
+		"xmeter_yellow.png",
+        	"over_horiz.png");
+				
+	resources->ymeter_images = new_image_set(5,
+		"ymeter_normal.png",
+		"ymeter_green.png",
+		"ymeter_red.png",
+		"ymeter_yellow.png",
+        	"over_vertical.png");
+
+	//listbox
+	resources->listbox_bg = new_image("list_bg.png");
+
+
 }
 
 #define CWINDOW_METER_MARGIN 5

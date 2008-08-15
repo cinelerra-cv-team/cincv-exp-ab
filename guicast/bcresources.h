@@ -95,11 +95,12 @@ public:
 
 
 // beveled box colors
-	int button_light;      
-	int button_highlighted;
+       int button_light;      
+       int button_highlighted;
 	int button_down;       
 	int button_up;         
 	int button_shadow;     
+	int button_uphighlighted;
 
 // highlighting
 	int highlight_inverse;
@@ -136,6 +137,8 @@ public:
 	int progress_text;
 
 
+	int menu_highlighted_fontcolor;
+
 // ms for double click
 	long double_click;
 // ms for cursor flash
@@ -168,6 +171,10 @@ public:
 	VFrame *toggle_highlight_bg;
 	int toggle_text_margin;
 
+ 	int listboxitemselected_color;
+ 
+ 	int audiovideo_color;
+ 
 // Background images
 	static VFrame *bg_image;
 	static VFrame *menu_bg;
@@ -313,6 +320,8 @@ public:
 
 	VFrame **medium_7segment;
 
+//clock
+	int draw_clock_background;
 
 	int use_fontset;
 // This must be constitutive since applications access the private members here.

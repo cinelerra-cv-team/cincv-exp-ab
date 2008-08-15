@@ -689,6 +689,9 @@ BC_Resources::BC_Resources()
 	meter_3d = 1;
 	medium_7segment = default_medium_7segment;
 
+	listboxitemselected_color = BLUE;
+
+	audiovideo_color = RED;
 
 	use_fontset = 0;
 

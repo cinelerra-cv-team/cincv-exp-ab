@@ -101,7 +101,7 @@ public:
 	DefaultThemeMain(PluginServer *server);
 	~DefaultThemeMain();
 	
-	char* plugin_title();
+	const char* plugin_title();
 	Theme* new_theme();
 	
 	DefaultTheme *theme;

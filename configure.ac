@@ -498,6 +498,8 @@ AC_OUTPUT(Makefile cinelerra-cvs-current.spec po/Makefile.in\
 	plugins/suv/data/Makefile \
 	plugins/defaulttheme/Makefile \
 	plugins/defaulttheme/data/Makefile \
+	plugins/bluedottheme/Makefile \
+	plugins/bluedottheme/data/Makefile \
 					plugins/swapchannels/Makefile \
 					plugins/swapframes/Makefile \
 					plugins/synthesizer/Makefile \

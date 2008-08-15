@@ -21,6 +21,7 @@
 
 #include "bcresources.h"
 #include "bctitle.h"
+#include "bcresources.h"
 #include <string.h>
 #include <unistd.h>
 
@@ -117,8 +118,12 @@ int BC_Title::draw()
 
  	if(font == MEDIUM_7SEGMENT)
  	{
- 		BC_WindowBase::set_color(BLACK);
- 		draw_box(0, 0, w, h);
+	  //leave it up to the theme to decide if we need a background or not.
+	  if (top_level->get_resources()->draw_clock_background)
+	  {
+	      BC_WindowBase::set_color(BLACK);
+	      draw_box(0, 0, w, h);
+	  }
  	}
 	else
  		draw_top_background(parent_window, 0, 0, w, h);
