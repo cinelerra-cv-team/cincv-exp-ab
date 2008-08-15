@@ -143,6 +143,7 @@ public:
 	friend class BC_Pan;
 	friend class BC_PBuffer;
 	friend class BC_Pixmap;
+        friend class BC_PixmapSW;
 	friend class BC_Popup;
 	friend class BC_PopupMenu;
 	friend class BC_Pot;
