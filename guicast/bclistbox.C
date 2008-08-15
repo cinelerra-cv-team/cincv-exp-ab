@@ -31,6 +31,7 @@
 #include "keys.h"
 #include "bctimer.h"
 #include "vframe.h"
+#include "language.h"
 
 #include <string.h>
 #include <unistd.h>
@@ -4434,7 +4435,7 @@ int BC_ListBox::draw_titles(int flash)
 			gui->set_color(get_resources()->listbox_title_color);
 			gui->draw_text(x, 
 				LISTBOX_MARGIN + LISTBOX_BORDER + get_text_ascent(MEDIUMFONT), 
-				column_titles[i]);
+				_(column_titles[i]));
 		}
 		draw_border(0);
 	}

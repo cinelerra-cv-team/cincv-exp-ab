@@ -22,6 +22,7 @@
 #ifndef BCFILEBOX_INC
 #define BCFILEBOX_INC
 
+#include "language.h"
 class BC_FileBox;
 
 
