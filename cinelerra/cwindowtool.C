@@ -302,7 +302,7 @@ int CWindowToolGUI::translation_event()
 
 
 
-CWindowCoord::CWindowCoord(CWindowToolGUI *gui, int x, int y, float value)
+CWindowCoord::CWindowCoord(CWindowToolGUI *gui, int x, int y, float value, int log_increment = 0)
  : BC_TumbleTextBox(gui, 
 		(float)value,
 		(float)-65536,
@@ -312,6 +312,7 @@ CWindowCoord::CWindowCoord(CWindowToolGUI *gui, int x, int y, float value)
 		100)
 {
 	this->gui = gui;
+	set_log_floatincrement(log_increment);
 }
 
 CWindowCoord::CWindowCoord(CWindowToolGUI *gui, int x, int y, int value)
@@ -589,8 +590,10 @@ void CWindowCameraGUI::create_objects()
 	this->z = new CWindowCoord(this, 
 		x, 
 		y, 
-		z_auto ? z_auto->value : (float)1);
+		z_auto ? z_auto->value : (float)1,
+		1);
 	this->z->create_objects();
+	this->z->set_boundaries((float).0001, (float)256.0);
 
 	y += 30;
 	x1 = 10;
@@ -1042,8 +1045,10 @@ void CWindowProjectorGUI::create_objects()
 	this->z = new CWindowCoord(this, 
 		x, 
 		y, 
-		z_auto ? z_auto->value : (float)1);
+		z_auto ? z_auto->value : (float)1,
+		1);
 	this->z->create_objects();
+	this->z->set_boundaries((float).0001, (float)256.0);
 
 	y += 30;
 	x1 = 10;
