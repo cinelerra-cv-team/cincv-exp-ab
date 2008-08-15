@@ -304,7 +304,8 @@ void BC_Signals::initialize2()
 	signal(SIGHUP, signal_entry);
 	signal(SIGINT, signal_entry);
 	signal(SIGQUIT, signal_entry);
-	signal(SIGKILL, signal_entry);
+ 	// SIGKILL cannot be stopped
+ 	// signal(SIGKILL, signal_entry);
 	signal(SIGSEGV, signal_entry);
 	signal(SIGTERM, signal_entry);
 	signal(SIGFPE, signal_entry);
