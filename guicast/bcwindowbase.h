@@ -75,6 +75,7 @@
 #include "bctitle.inc"
 #include "bctoggle.inc"
 #include "bctumble.inc"
+#include "bcwidgetgrid.inc"
 #include "bcwindow.inc"
 #include "bcwindowbase.inc"
 #include "bcwindowevents.inc"
@@ -235,6 +236,7 @@ public:
 	BC_MenuBar* add_menubar(BC_MenuBar *menu_bar);
 	BC_WindowBase* add_subwindow(BC_WindowBase *subwindow);
 	BC_WindowBase* add_tool(BC_WindowBase *subwindow);
+ 	BC_WidgetGrid* add_widgetgrid(BC_WidgetGrid *widgetgrid);
 // Use this to get events for the popup window.
 // Events are not propagated to the popup window.
 	BC_WindowBase* add_popup(BC_WindowBase *window);
@@ -249,6 +251,7 @@ public:
 	virtual int get_h();
 	virtual int get_x();
 	virtual int get_y();
+ 	virtual int reposition_widgets(){ printf("foo1"); return 0; }
 	int get_root_w(int ignore_dualhead = 0, int lock_display = 0);
 	int get_root_h(int lock_display);
 	int get_root_x(int lock_display);
@@ -658,6 +661,8 @@ private:
 // list of window bases in this window
 	BC_SubWindowList* subwindows;
 	ArrayList<BC_WindowBase*> popups;
+// list of window bases in this window
+ 	BC_WidgetGridList* widgetgrids;
 // Position of window
 	int x, y, w, h;
 // Default colors

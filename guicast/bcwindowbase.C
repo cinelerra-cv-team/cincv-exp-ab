@@ -31,6 +31,7 @@
 #include "bcresources.h"
 #include "bcsignals.h"
 #include "bcsubwindow.h"
+#include "bcwidgetgrid.h"
 #include "bcsynchronous.h"
 #include "bctimer.h"
 #include "bcwindowbase.h"
@@ -120,6 +121,16 @@ BC_WindowBase::~BC_WindowBase()
 		delete subwindows;
 	}
 
+	if(widgetgrids)
+	{
+                while (widgetgrids->total) 
+                {
+			delete widgetgrids->last();
+			widgetgrids->remove();
+                }
+                delete widgetgrids;
+        }
+		
 	delete pixmap;
 
 // Destroyed in synchronous thread if gl context exists.
@@ -207,6 +218,7 @@ int BC_WindowBase::initialize()
 	top_level = 0;
 	parent_window = 0;
 	subwindows = 0;
+	widgetgrids = 0;
 	xvideo_port_id = -1;
 	video_on = 0;
 	motion_events = 0;
@@ -341,6 +353,7 @@ int BC_WindowBase::create_window(BC_WindowBase *parent_window,
 	if(parent_window) top_level = parent_window->top_level;
 
 	subwindows = new BC_SubWindowList;
+	widgetgrids = new BC_WidgetGridList;
 
 	if(window_type == MAIN_WINDOW)
 	{
@@ -2705,6 +2718,13 @@ BC_WindowBase* BC_WindowBase::add_tool(BC_WindowBase *subwindow)
 {
 	return add_subwindow(subwindow);
 }
+
+BC_WidgetGrid* BC_WindowBase::add_widgetgrid(BC_WidgetGrid *widgetgrid)
+{
+	widgetgrids->append(widgetgrid);
+	return widgetgrid;
+}
+
 
 int BC_WindowBase::flash(int x, int y, int w, int h, int flush)
 {
