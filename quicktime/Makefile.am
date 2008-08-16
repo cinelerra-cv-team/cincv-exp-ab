@@ -31,13 +31,13 @@ libquicktimehv_la_SOURCES = \
 	atom.c \
 	avcc.c \
 	avi_hdrl.c \
-	avi_idx1.c \
-	avi_movi.c \
-	avi_strl.c \
-	avi_odml.c \
 	avi_ix.c \
+	avi_idx1.c \
 	avi_indx.c \
+	avi_movi.c \
+	avi_odml.c \
 	avi_riff.c \
+	avi_strl.c \
 	cmodel_default.c \
 	cmodel_float.c \
 	cmodel_yuv420p.c \
@@ -69,12 +69,12 @@ libquicktimehv_la_SOURCES = \
 	mvhd.c \
 	plugin.c \
 	qdm2.c \
-	qtcache.c \
 	qtasf.c \
+	qtcache.c \
 	qtdv.c \
 	qtffmpeg.c \
-	qth264.c \
 	qtpng.c \
+	qth264.c \
 	qtmp3.c \
 	quicktime.c \
 	raw.c \
@@ -98,15 +98,15 @@ libquicktimehv_la_SOURCES = \
 	v308.c \
 	v408.c \
 	v410.c \
-	vmhd.c \
 	vbraudio.c \
+	vmhd.c \
 	vorbis.c \
 	workarounds.c \
+	wma.c \
+	wmx2.c \
 	yuv2.c \
 	yuv4.c \
-	yv12.c \
-	wmx2.c \
-	wma.c
+	yv12.c
 
 noinst_HEADERS = cmodel_permutation.h \
 	codecs.h \
